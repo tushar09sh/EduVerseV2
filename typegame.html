@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing Quest: Air Assault</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="typegame.css">
+</head>
+<body class="w-screen h-screen flex items-center justify-center p-4">
+
+    <div id="game-container" class="relative rounded-lg overflow-hidden flex flex-col">
+        <!-- HUD -->
+        <div id="hud" class="absolute top-2 left-2 right-2 flex justify-between z-10">
+            <div id="score" class="hud-element text-yellow-300">SCORE: 0</div>
+            <div id="lives" class="hud-element text-red-400">CASTLE HP: 100%</div>
+            <div id="wave" class="hud-element text-cyan-300">WAVE: 1</div>
+        </div>
+        
+        <!-- Game Screen -->
+        <div id="game-screen" class="w-full flex-grow relative overflow-hidden">
+            <div class="castle"></div>
+            <!-- Enemies will be added here by JS -->
+        </div>
+        
+        <!-- Typing Area -->
+        <div class="bg-gray-800 p-4 border-t-8 border-gray-600">
+            <input type="text" id="typing-input" class="w-full p-4 text-2xl text-center focus:outline-none" placeholder="TYPE HERE..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+        </div>
+    </div>
+    
+    <!-- Modal -->
+    <div id="modal" class="absolute inset-0 hidden flex-col justify-center items-center gap-4 z-20">
+        <div id="modal-message" class="text-6xl text-center"></div>
+        <div id="final-stats" class="text-2xl text-center"></div>
+        <button id="restart-btn" class="mt-4 px-8 py-4 bg-green-600 text-white text-xl border-4 border-white hover:bg-green-500">RESTART</button>
+    </div>
+    
+    <!-- Wave Transition Modal -->
+    <div id="wave-modal" class="absolute inset-0 hidden justify-center items-center z-30">
+        <div id="wave-message" class="text-7xl text-white"></div>
+    </div>
+
+    <script src="typegame.js"></script>
+</body>
+</html>
+

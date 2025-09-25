@@ -1,0 +1,174 @@
+/* General Body Styles */
+body {
+    font-family: 'Press Start 2P', cursive;
+    background-color: #0d0d0d;
+    color: #fff;
+    overflow-x: hidden;
+    background-image:
+        radial-gradient(white 1px, transparent 1px),
+        radial-gradient(white 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-position: 0 0, 20px 20px;
+    animation: space-scroll 60s linear infinite;
+    margin: 0;
+    padding: 0;
+}
+
+@keyframes space-scroll {
+    from { background-position: 0 0, 20px 20px; }
+    to   { background-position: -1000px 500px, -980px 520px; }
+}
+
+/* Main Title Animation */
+#main-title {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 10vw;
+    color: #00ff00;
+    text-shadow: 4px 4px #ff00ff, 8px 8px #00ffff;
+    transition: all 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    white-space: nowrap;
+    z-index: 100;
+}
+
+#main-title.logo-mode {
+    top: 20px;
+    left: 20px;
+    font-size: 1.5rem;
+    transform: translate(0, 0);
+    text-shadow: 2px 2px #ff00ff, 4px 4px #00ffff;
+}
+
+
+/* Game Gallery */
+#game-gallery {
+    padding: 120px 20px 40px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+#game-gallery.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.gallery-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+    color: #fefefe;
+    text-shadow: 2px 2px #ff5500;
+}
+
+.cards-container {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 0 10px;
+}
+
+/* Game Card Styling */
+.game-card {
+    width: 100%;
+    max-width: 320px;
+    background-color: #1a1a1a;
+    border: 4px solid #444;
+    text-decoration: none;
+    color: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+}
+
+.game-card:hover:not(.disabled) {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 0 20px #00ff00, 0 0 30px #00ff00;
+    border-color: #00ff00;
+}
+
+.game-card.disabled {
+    cursor: not-allowed;
+    filter: grayscale(80%);
+}
+
+.card-art {
+    height: 180px;
+    border-bottom: 4px solid #444;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    text-shadow: 2px 2px #000;
+}
+
+.card-content {
+    padding: 20px;
+    flex-grow: 1;
+}
+
+.card-content h3 {
+    font-size: 1.2rem;
+    color: #00ff00;
+    margin-bottom: 10px;
+}
+
+.card-content p {
+    font-size: 0.8rem;
+    line-height: 1.5;
+    color: #ccc;
+}
+
+/* --- NEW Card Art using CSS Gradients and Pseudo-elements --- */
+.contra-art {
+    background: 
+        linear-gradient(45deg, #2c3e50 25%, transparent 25%), 
+        linear-gradient(-45deg, #2c3e50 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #2c3e50 75%),
+        linear-gradient(-45deg, transparent 75%, #2c3e50 75%);
+    background-size: 30px 30px;
+    background-color: #34495e;
+    color: #ecf0f1;
+}
+.contra-art::before { content: '🔫'; }
+
+.typing-art {
+    background: repeating-linear-gradient(45deg, #444, #444 10px, #333 10px, #333 20px);
+    color: #ecf0f1;
+}
+.typing-art::before { content: '✈️'; }
+
+.planet-match-art {
+    background: radial-gradient(circle, #4f46e5 0%, #1e1b4b 100%);
+    color: #f59e0b;
+}
+.planet-match-art::before { content: '🃏'; }
+
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    #main-title {
+        font-size: 15vw;
+    }
+    .gallery-title {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    #main-title.logo-mode {
+        font-size: 1.2rem;
+    }
+    #game-gallery {
+        padding-top: 100px;
+    }
+    .gallery-title {
+        font-size: 1.5rem;
+        margin-bottom: 30px;
+    }
+}

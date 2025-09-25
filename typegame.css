@@ -1,0 +1,181 @@
+body {
+    font-family: 'Press Start 2P', cursive;
+    background-color: #0d0d0d;
+    color: #fff;
+    background-image:
+        radial-gradient(white 1px, transparent 1px),
+        radial-gradient(white 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-position: 0 0, 20px 20px;
+    overflow: hidden;
+    padding: 1rem; /* Add some padding for smaller screens */
+}
+
+#game-container {
+    width: 100%;
+    max-width: 800px; /* Max width for desktop */
+    aspect-ratio: 800 / 600; /* Maintain aspect ratio */
+    height: auto; /* Height will be automatic based on aspect ratio */
+    background-color: #1a202c;
+    border: 8px solid #4a5568;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+    -webkit-box-reflect: below 15px linear-gradient(transparent, rgba(0,0,0,0.4));
+    margin: auto; /* Center the container */
+}
+
+#game-screen {
+    background: linear-gradient(to bottom, #4a90e2 0%, #a4c9f5 100%);
+    image-rendering: pixelated;
+}
+
+.castle {
+    width: 150px;
+    height: 250px; /* Increased height */
+    background-color: #718096;
+    position: absolute;
+    bottom: -50px; /* Adjusted position for taller look */
+    left: 50%;
+    transform: translateX(-50%);
+    border-top: 20px solid #a0aec0;
+    border-left: 10px solid #4a5568;
+    border-right: 10px solid #4a5568;
+}
+.castle::before, .castle::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 50px;
+    background-color: #a0aec0;
+    top: -50px;
+    border: 5px solid #4a5568;
+}
+.castle::before { left: 10px; }
+.castle::after { right: 10px; }
+
+.enemy {
+    position: absolute;
+    transition: left 1s linear;
+    font-size: 2.5rem; /* Using emoji for simple graphics */
+}
+
+.word-tag {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 2px solid #fff;
+    color: #fff;
+    font-size: 1rem;
+    white-space: nowrap;
+    transform: translateX(-50%);
+    top: -40px;
+    left: 50%;
+}
+
+.typed-char {
+    color: #f56565; /* Red for typed characters */
+}
+
+#typing-input {
+    font-family: 'Press Start 2P', cursive;
+    background-color: #2d3748;
+    border: 4px solid #4a5568;
+    color: #00ff00;
+    text-shadow: 1px 1px #000;
+    font-size: 1.5rem; /* Base font size */
+}
+
+.laser {
+    position: absolute;
+    width: 8px;
+    height: 20px;
+    background-color: #fefcbf;
+    box-shadow: 0 0 15px #fefcbf;
+    transition: all 0.2s ease-out;
+}
+
+#modal, #wave-modal {
+    background-color: rgba(0, 0, 0, 0.85);
+    text-shadow: 3px 3px #000;
+}
+
+#modal-message, #wave-message {
+    text-shadow: 3px 3px #ff00ff, 6px 6px #00ffff;
+}
+
+.hud-element {
+     background-color: rgba(0, 0, 0, 0.6);
+     padding: 8px 12px;
+     border: 3px solid #cbd5e0;
+     box-shadow: 0 0 10px #fff;
+     text-shadow: 2px 2px #000;
+     font-size: 0.75rem;
+}
+
+@keyframes shake {
+    10%, 90% { transform: translate3d(-1px, 0, 0) translateX(-50%); }
+    20%, 80% { transform: translate3d(2px, 0, 0) translateX(-50%); }
+    30%, 50%, 70% { transform: translate3d(-4px, 0, 0) translateX(-50%); }
+    40%, 60% { transform: translate3d(4px, 0, 0) translateX(-50%); }
+}
+
+/* --- Responsive Adjustments --- */
+
+/* For Tablets */
+@media (max-width: 768px) {
+    .hud-element {
+        font-size: 0.6rem;
+        padding: 6px 10px;
+    }
+    #typing-input {
+        font-size: 1.25rem;
+    }
+    .enemy {
+        font-size: 2rem;
+    }
+    .word-tag {
+        font-size: 0.8rem;
+    }
+     #modal-message, #wave-message {
+        font-size: 2.5rem;
+    }
+}
+
+/* For Mobile Phones */
+@media (max-width: 480px) {
+    body {
+        padding: 0.5rem;
+    }
+     #game-container {
+        border-width: 4px;
+        -webkit-box-reflect: unset; /* Remove reflection on small screens */
+    }
+    .hud-element {
+        font-size: 0.5rem;
+        padding: 4px 6px;
+        border-width: 2px;
+    }
+     #typing-input {
+        font-size: 1rem;
+        padding: 0.75rem;
+    }
+     .enemy {
+        font-size: 1.8rem;
+    }
+    .word-tag {
+        font-size: 0.7rem;
+        padding: 3px 6px;
+    }
+    #modal-message, #wave-message {
+        font-size: 2rem;
+    }
+    .castle {
+        width: 120px;
+    }
+    .castle::before, .castle::after {
+        width: 20px;
+        height: 35px;
+        top: -35px;
+    }
+}
+

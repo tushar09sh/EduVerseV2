@@ -1,0 +1,158 @@
+/* --- General Setup --- */
+:root {
+    --card-size: 100px;
+}
+
+body {
+    font-family: 'Press Start 2P', cursive;
+    background-color: #0d0d0d;
+    color: #fff;
+    overflow: hidden;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image:
+        radial-gradient(white 1px, transparent 1px),
+        radial-gradient(white 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-position: 0 0, 20px 20px;
+    animation: space-scroll 120s linear infinite;
+    image-rendering: pixelated;
+}
+
+@keyframes space-scroll {
+    from { background-position: 0 0, 20px 20px; }
+    to   { background-position: -2000px 1000px, -1980px 1020px; }
+}
+
+/* --- Game Layout --- */
+#game-container {
+    width: 100%;
+    max-width: 520px;
+    padding: 1rem;
+}
+
+#hud {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    background-color: rgba(0,0,0,0.6);
+    padding: 10px;
+    border: 3px solid #6b7280;
+    text-shadow: 2px 2px #000;
+}
+
+.hud-item {
+    color: #4ade80; /* Green computer text */
+}
+
+#game-board {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    perspective: 1000px; /* For 3D flip effect */
+}
+
+/* --- Card Styling --- */
+.card {
+    width: var(--card-size);
+    height: var(--card-size);
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+    cursor: pointer;
+}
+
+.card.flipped, .card.matched {
+    transform: rotateY(180deg);
+}
+
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+}
+
+.card-back {
+    background: linear-gradient(45deg, #4f46e5, #9333ea);
+    border: 3px solid #c4b5fd;
+    color: #e0e7ff;
+}
+
+.card-front {
+    background-color: #374151;
+    border: 3px solid #9ca3af;
+    transform: rotateY(180deg);
+}
+
+/* --- Modal Styling --- */
+#modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    text-align: center;
+    padding: 20px;
+}
+
+#modal.hidden {
+    display: none;
+}
+
+#modal-content {
+    background-color: #1f2937;
+    padding: 30px;
+    border: 4px solid #9ca3af;
+    max-width: 500px;
+}
+
+#modal-title {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px #4ade80;
+}
+
+#modal-stats {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+#modal-btn {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1rem;
+    margin-top: 20px;
+    padding: 15px 25px;
+    background-color: #ef4444;
+    border: none;
+    border-bottom: 4px solid #b91c1c;
+    color: white;
+    cursor: pointer;
+}
+
+/* --- Responsive --- */
+@media (max-width: 540px) {
+    :root { --card-size: 80px; }
+    #game-container { padding: 0.5rem; }
+    #hud { font-size: 0.8rem; }
+}
+
+@media (max-width: 400px) {
+    :root { --card-size: 60px; }
+    .card-front { font-size: 2rem; }
+    #hud { font-size: 0.6rem; }
+}
